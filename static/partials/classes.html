@@ -1,0 +1,314 @@
+<div class="fullscreen">
+        <div class="row">
+            <div class="card-header col-12" ng-controller="mainController"> &nbsp;Welcome {{user['NetID']}}!</div>
+        </div>
+        <div class="row">
+            &nbsp;&nbsp;
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Major</strong>
+                        <small>Form</small>
+                    </div>
+                    <div class="card-block">
+                        <form id="infoFrom" ng-submit="myFunc()" ng-controller="classesController">
+                            <div class="form-group col-sm-12">
+                                <label for="major">Major</label>
+                                <select  id="major" ng-model="major">
+                                    <OPTION VALUE="ACCT">ACCT - Accounting</OPTION>
+                                    <OPTION VALUE="AEGD">AEGD - Adv Ed Gen Dentistry</OPTION>
+                                    <OPTION VALUE="AERO">AERO - Aerospace Engineering</OPTION>
+                                    <OPTION VALUE="AERS">AERS - Aerospace Studies</OPTION>
+                                    <OPTION VALUE="AFST">AFST - Africana Studies</OPTION>
+                                    <OPTION VALUE="AGCJ">AGCJ - Ag Comm & Journalism</OPTION>
+                                    <OPTION VALUE="AGEC">AGEC - Agricultural Economics</OPTION>
+                                    <OPTION VALUE="AGLS">AGLS - Ag & Life Sciences</OPTION>
+                                    <OPTION VALUE="AGSC">AGSC - Agricultural Science</OPTION>
+                                    <OPTION VALUE="AGSM">AGSM - Agricultrl Systems Mgmt</OPTION>
+                                    <OPTION VALUE="ALEC">ALEC - Ag Leadrshp, Ed & Comm</OPTION>
+                                    <OPTION VALUE="ALED">ALED - Ag Leadership & Dev</OPTION>
+                                    <OPTION VALUE="ANSC">ANSC - Animal Science</OPTION>
+                                    <OPTION VALUE="ANTH">ANTH - Anthropology</OPTION>
+                                    <OPTION VALUE="ARAB">ARAB - Arabic</OPTION>
+                                    <OPTION VALUE="ARCH">ARCH - Architecture</OPTION>
+                                    <OPTION VALUE="ARTS">ARTS - Art</OPTION>
+                                    <OPTION VALUE="ASIA">ASIA - Asian Studies</OPTION>
+                                    <OPTION VALUE="ASTR">ASTR - Astronomy</OPTION>
+                                    <OPTION VALUE="ATMO">ATMO - Atmospheric Sciences</OPTION>
+                                    <OPTION VALUE="ATTR">ATTR - Athletic Training</OPTION>
+                                    <OPTION VALUE="BAEN">BAEN - Biological & Ag Engr</OPTION>
+                                    <OPTION VALUE="BEFB">BEFB-Bilingual Ed Field Based</OPTION>
+                                    <OPTION VALUE="BESC">BESC - Bioenvironmental Sci</OPTION>
+                                    <OPTION VALUE="BICH">BICH - Biochemistry</OPTION>
+                                    <OPTION VALUE="BIED">BIED - Bilingual Education</OPTION>
+                                    <OPTION VALUE="BIMS">BIMS - Biomedical Science</OPTION>
+                                    <OPTION VALUE="BIOC">BIOC - Rice/IBT</OPTION>
+                                    <OPTION VALUE="BIOL">BIOL - Biology</OPTION>
+                                    <OPTION VALUE="BIOT">BIOT - Biotechnology</OPTION>
+                                    <OPTION VALUE="BMEN">BMEN - Biomedical Engineering</OPTION>
+                                    <OPTION VALUE="BUAD">BUAD - Business Administration</OPTION>
+                                    <OPTION VALUE="BUSH">BUSH - Geo. Bush School of Gov</OPTION>
+                                    <OPTION VALUE="BUSN">BUSN - Mays Business School</OPTION>
+                                    <OPTION VALUE="CARC">CARC - College of Architecture</OPTION>
+                                    <OPTION VALUE="CEHD">CEHD - Coll of Ed & Human Dev</OPTION>
+                                    <OPTION VALUE="CHEM">CHEM - Chemistry</OPTION>
+                                    <OPTION VALUE="CHEN">CHEN - Chemical Engineering</OPTION>
+                                    <OPTION VALUE="CHIN">CHIN - Chinese</OPTION>
+                                    <OPTION VALUE="CLAS">CLAS - Classics</OPTION>
+                                    <OPTION VALUE="CLEN">CLEN - College of Engineering</OPTION>
+                                    <OPTION VALUE="COMM">COMM - Communication</OPTION>
+                                    <OPTION VALUE="COSC">COSC - Construction Science</OPTION>
+                                    <OPTION VALUE="CPSY">CPSY - Counseling Psychology</OPTION>
+                                    <OPTION VALUE="CSCE">CSCE - Computer Sci & Engr</OPTION>
+                                    <OPTION VALUE="CVEN">CVEN - Civil Engineering</OPTION>
+                                    <OPTION VALUE="DASC">DASC - Dairy Science</OPTION>
+                                    <OPTION VALUE="DCED">DCED - Dance Education</OPTION>
+                                    <OPTION VALUE="DDHS">DDHS - Dental Hygiene</OPTION>
+                                    <OPTION VALUE="DPHS">DPHS - Dental Public Health</OPTION>
+                                    <OPTION VALUE="ECEN">ECEN - Electrical & Comp Engr</OPTION>
+                                    <OPTION VALUE="ECMT">ECMT - Econometrics</OPTION>
+                                    <OPTION VALUE="ECON">ECON - Economics</OPTION>
+                                    <OPTION VALUE="EDAD">EDAD - Educational Administrtn</OPTION>
+                                    <OPTION VALUE="EDCI">EDCI - Educ Curriculum & Dev</OPTION>
+                                    <OPTION VALUE="EDHP">EDHP - Ed Healthcare Prof</OPTION>
+                                    <OPTION VALUE="EDTC">EDTC - Educational Technology</OPTION>
+                                    <OPTION VALUE="EEBL">EEBL - Ecology & Evol Biology</OPTION>
+                                    <OPTION VALUE="EHRD">EHRD - Ed Human Res Develop</OPTION>
+                                    <OPTION VALUE="ENDO">ENDO - Endodontics</OPTION>
+                                    <OPTION VALUE="ENDS">ENDS - Environmental Design</OPTION>
+                                    <OPTION VALUE="ENGL">ENGL - English</OPTION>
+                                    <OPTION VALUE="ENGR">ENGR - Engineering</OPTION>
+                                    <OPTION VALUE="ENTC">ENTC - Engineering Technology</OPTION>
+                                    <OPTION VALUE="ENTO">ENTO - Entomology</OPTION>
+                                    <OPTION VALUE="EPFB">EPFB - Educ Psyc Field Based</OPTION>
+                                    <OPTION VALUE="EPSY">EPSY - Educational Psychology</OPTION>
+                                    <OPTION VALUE="ESET">ESET - Electronic Sys Eng Tech</OPTION>
+                                    <OPTION VALUE="ESSM">ESSM  Ecosystem Science & Mgmt</OPTION>
+                                    <OPTION VALUE="EURO">EURO - European Studies</OPTION>
+                                    <OPTION VALUE="EVEN">EVEN - Environmental Engr</OPTION>
+                                    <OPTION VALUE="FILM">FILM - Film Studies</OPTION>
+                                    <OPTION VALUE="FINC">FINC - Finance</OPTION>
+                                    <OPTION VALUE="FIVS">FIVS - Forensic & Inv Science</OPTION>
+                                    <OPTION VALUE="FORS">FORS - Forensic Healthcare</OPTION>
+                                    <OPTION VALUE="FREN">FREN - French</OPTION>
+                                    <OPTION VALUE="FSTC">FSTC - Food Science & Tech</OPTION>
+                                    <OPTION VALUE="GALV">GALV - TAMUG Study Abroad</OPTION>
+                                    <OPTION VALUE="GENE">GENE - Genetics</OPTION>
+                                    <OPTION VALUE="GEOG">GEOG - Geography</OPTION>
+                                    <OPTION VALUE="GEOL">GEOL - Geology</OPTION>
+                                    <OPTION VALUE="GEOP">GEOP - Geophysics</OPTION>
+                                    <OPTION VALUE="GEOS">GEOS - Geosciences</OPTION>
+                                    <OPTION VALUE="GERM">GERM - German</OPTION>
+                                    <OPTION VALUE="GS01">GS01 - UT-Hous Biomath Biostat</OPTION>
+                                    <OPTION VALUE="GS04">GS04 - UT-Hou Clr Mlclr DevBio</OPTION>
+                                    <OPTION VALUE="GS07">GS07 - UT-Hou Micro Mlclr Gene</OPTION>
+                                    <OPTION VALUE="GS11">GS11 - UT-Hou Human Genetics</OPTION>
+                                    <OPTION VALUE="GS13">GS13 - UT-Hou Pharm Toxicology</OPTION>
+                                    <OPTION VALUE="GS14">GS14 - UT-Hou Exper Analy Beh</OPTION>
+                                    <OPTION VALUE="GS21">GS21 - UT-Hou/IBT</OPTION>
+                                    <OPTION VALUE="GSMV">GSMV - Grad Studies-Baylor COM</OPTION>
+                                    <OPTION VALUE="GSPY">GSPY - Grad Studies-Baylor COM</OPTION>
+                                    <OPTION VALUE="HCPI">HCPI - Healthcare Prof Core In</OPTION>
+                                    <OPTION VALUE="HEFB">HEFB - Health Ed Field Based</OPTION>
+                                    <OPTION VALUE="HHUM">HHUM - Health Humanities</OPTION>
+                                    <OPTION VALUE="HISP">HISP - Hispanic Studies</OPTION>
+                                    <OPTION VALUE="HIST">HIST - History</OPTION>
+                                    <OPTION VALUE="HLTH">HLTH - Health</OPTION>
+                                    <OPTION VALUE="HORT">HORT - Horticultural Sciences</OPTION>
+                                    <OPTION VALUE="HPCH">HPCH - Health Promo Comm Hlth</OPTION>
+                                    <OPTION VALUE="HUMA">HUMA - Humanities</OPTION>
+                                    <OPTION VALUE="IBST">IBST - Institute Biosci & Tech</OPTION>
+                                    <OPTION VALUE="IBUS">IBUS - International Business</OPTION>
+                                    <OPTION VALUE="ICPE">ICPE-Interdisc Curr Prg Energy</OPTION>
+                                    <OPTION VALUE="IDIS">IDIS - Industrial Distribution</OPTION>
+                                    <OPTION VALUE="INST">INST-Interdisciplinary Studies</OPTION>
+                                    <OPTION VALUE="INTA">INTA - International Affairs</OPTION>
+                                    <OPTION VALUE="INTS">INTS - International Studies</OPTION>
+                                    <OPTION VALUE="ISEN">ISEN - Indust & Systems Engr</OPTION>
+                                    <OPTION VALUE="ISTM">ISTM - Mgmt Info Systems</OPTION>
+                                    <OPTION VALUE="ITAL">ITAL - Italian</OPTION>
+                                    <OPTION VALUE="JAPN">JAPN - Japanese</OPTION>
+                                    <OPTION VALUE="JOUR">JOUR - Journalism</OPTION>
+                                    <OPTION VALUE="KINE">KINE - Kinesiology</OPTION>
+                                    <OPTION VALUE="KNFB">KNFB - Kinesiology Field Based</OPTION>
+                                    <OPTION VALUE="LAND">LAND - Landscape Architecture</OPTION>
+                                    <OPTION VALUE="LAW">LAW - Law</OPTION>
+                                    <OPTION VALUE="LBAR">LBAR - College of Liberal Arts</OPTION>
+                                    <OPTION VALUE="LCSE">LCSE - Learning Comm Shared Ex</OPTION>
+                                    <OPTION VALUE="LDEV">LDEV - Land Development</OPTION>
+                                    <OPTION VALUE="LING">LING -Linguistics</OPTION>
+                                    <OPTION VALUE="LMAS">LMAS - Latino/Mex Amer Studies</OPTION>
+                                    <OPTION VALUE="MASC">MASC - Integrated Math & Sci</OPTION>
+                                    <OPTION VALUE="MATH">MATH - Mathematics</OPTION>
+                                    <OPTION VALUE="MCMD">MCMD - Molecular Cell Medicine</OPTION>
+                                    <OPTION VALUE="MEEN">MEEN - Mechanical Engineering</OPTION>
+                                    <OPTION VALUE="MEFB">MEFB - Mid Grds Ed Field Based</OPTION>
+                                    <OPTION VALUE="MEMA">MEMA - Mechanics and Materials</OPTION>
+                                    <OPTION VALUE="MEPS">MEPS-Molecular & Env Plant Sci</OPTION>
+                                    <OPTION VALUE="MGMT">MGMT - Management</OPTION>
+                                    <OPTION VALUE="MKTG">MKTG - Marketing</OPTION>
+                                    <OPTION VALUE="MLSC">MLSC - Military Science</OPTION>
+                                    <OPTION VALUE="MMET">MMET - Mfg & Mech Engr Tech</OPTION>
+                                    <OPTION VALUE="MODL">MODL - Modern Languages</OPTION>
+                                    <OPTION VALUE="MPHY">MPHY - Medical Physiology</OPTION>
+                                    <OPTION VALUE="MSCI">MSCI - Medical Sciences</OPTION>
+                                    <OPTION VALUE="MSEN">MSEN -Materials Science & Engr</OPTION>
+                                    <OPTION VALUE="MUSC">MUSC - Music</OPTION>
+                                    <OPTION VALUE="NEXT">NEXT - Neuro Exper Therapeutic</OPTION>
+                                    <OPTION VALUE="NRSC">NRSC - Neuroscience</OPTION>
+                                    <OPTION VALUE="NUEN">NUEN - Nuclear Engineering</OPTION>
+                                    <OPTION VALUE="NURS">NURS - Nursing</OPTION>
+                                    <OPTION VALUE="NUTR">NUTR - Nutrition</OPTION>
+                                    <OPTION VALUE="NVSC">NVSC - Naval Science</OPTION>
+                                    <OPTION VALUE="OBIO">OBIO - Oral Biology</OPTION>
+                                    <OPTION VALUE="OCEN">OCEN - Ocean Engineering</OPTION>
+                                    <OPTION VALUE="OCNG">OCNG - Oceanography</OPTION>
+                                    <OPTION VALUE="OMFP">OMFP - Oral & Maxillofac Path</OPTION>
+                                    <OPTION VALUE="OMFR">OMFR - Oral & Maxillofac Radio</OPTION>
+                                    <OPTION VALUE="OMFS">OMFS - Oral & Maxillofac Surg</OPTION>
+                                    <OPTION VALUE="ORTH">ORTH - Orthodontics</OPTION>
+                                    <OPTION VALUE="PEDD">PEDD - Pediatric Dentistry</OPTION>
+                                    <OPTION VALUE="PERF">PERF - Performance Studies</OPTION>
+                                    <OPTION VALUE="PERI">PERI - Peridontics</OPTION>
+                                    <OPTION VALUE="PETE">PETE - Petroleum Engineering</OPTION>
+                                    <OPTION VALUE="PHAR">PHAR - Pharmacy</OPTION>
+                                    <OPTION VALUE="PHEB">PHEB - Public Hlth Epide Biost</OPTION>
+                                    <OPTION VALUE="PHEO">PHEO - Public Hlth Enviro Occu</OPTION>
+                                    <OPTION VALUE="PHIL">PHIL - Philosophy</OPTION>
+                                    <OPTION VALUE="PHLT">PHLT - Public Health</OPTION>
+                                    <OPTION VALUE="PHPM">PHPM - Public Hlth Pol & Mgmt</OPTION>
+                                    <OPTION VALUE="PHYS">PHYS - Physics</OPTION>
+                                    <OPTION VALUE="PLAN">PLAN - Urban Planning</OPTION>
+                                    <OPTION VALUE="PLPA">PLPA - Plant Pathology</OPTION>
+                                    <OPTION VALUE="POLS">POLS - Political Science</OPTION>
+                                    <OPTION VALUE="POSC">POSC - Poultry Science</OPTION>
+                                    <OPTION VALUE="PROS">PROS - Prosthodontics</OPTION>
+                                    <OPTION VALUE="PSAA">PSAA - Public Service & Admin</OPTION>
+                                    <OPTION VALUE="PSYC">PSYC - Psychology</OPTION>
+                                    <OPTION VALUE="RDNG">RDNG - Reading</OPTION>
+                                    <OPTION VALUE="RELS">RELS - Religious Studies</OPTION>
+                                    <OPTION VALUE="RENR">RENR-Renewable Natural Resrces</OPTION>
+                                    <OPTION VALUE="RPTS">RPTS - Rec, Park & Tourism Sci</OPTION>
+                                    <OPTION VALUE="RUSS">RUSS - Russian</OPTION>
+                                    <OPTION VALUE="SABR">SABR - Study Abroad</OPTION>
+                                    <OPTION VALUE="SCEN">SCEN - College of Science</OPTION>
+                                    <OPTION VALUE="SCMT">SCMT - Supply Chain Mgmt</OPTION>
+                                    <OPTION VALUE="SCSC">SCSC - Soil and Crop Sciences</OPTION>
+                                    <OPTION VALUE="SEFB">SEFB - Special Ed Field Based</OPTION>
+                                    <OPTION VALUE="SENG">SENG - Safety Engineering</OPTION>
+                                    <OPTION VALUE="SLCX">SLCX - Student Learning Center</OPTION>
+                                    <OPTION VALUE="SOCI">SOCI - Sociology</OPTION>
+                                    <OPTION VALUE="SOMS">SOMS-Schl of Military Sciences</OPTION>
+                                    <OPTION VALUE="SOPH">SOPH - School of Public Health</OPTION>
+                                    <OPTION VALUE="SPAN">SPAN - Spanish</OPTION>
+                                    <OPTION VALUE="SPED">SPED - Special Education</OPTION>
+                                    <OPTION VALUE="SPMT">SPMT - Sport Management</OPTION>
+                                    <OPTION VALUE="SPSY">SPSY - School Psychology</OPTION>
+                                    <OPTION VALUE="STAT">STAT - Statistics</OPTION>
+                                    <OPTION VALUE="STLC">STLC - Student Learning Center</OPTION>
+                                    <OPTION VALUE="TAMU">TAMU Study Abroad/Consortium</OPTION>
+                                    <OPTION VALUE="TCMG">TCMG - Technology Management</OPTION>
+                                    <OPTION VALUE="TEED">TEED - Teacher Education</OPTION>
+                                    <OPTION VALUE="TEFB">TEFB - Teacher Ed Field Based</OPTION>
+                                    <OPTION VALUE="THAR">THAR - Theatre Arts</OPTION>
+                                    <OPTION VALUE="UGST">UGST - Undergraduate Studies</OPTION>
+                                    <OPTION VALUE="URPN">URPN - Urban & Reg Planning</OPTION>
+                                    <OPTION VALUE="URSC">URSC - Urban Science</OPTION>
+                                    <OPTION VALUE="VIBS">VIBS - Vet Integrative Biosci</OPTION>
+                                    <OPTION VALUE="VIST">VIST - Visual Studies</OPTION>
+                                    <OPTION VALUE="VIZA">VIZA - Visualization</OPTION>
+                                    <OPTION VALUE="VLCS">VLCS-Vet Large Animal Clin Sc</OPTION>
+                                    <OPTION VALUE="VMID">VMID - Vet Medicine-Interdisc</OPTION>
+                                    <OPTION VALUE="VPAR">VPAR - Veterinary Parasitology</OPTION>
+                                    <OPTION VALUE="VPAT">VPAT - Veterinary Pathology</OPTION>
+                                    <OPTION VALUE="VSCS">VSCS-Vet Small Animal Clin Sc</OPTION>
+                                    <OPTION VALUE="VTMI">VTMI - Veterinary Microbiology</OPTION>
+                                    <OPTION VALUE="VTPB">VTPB - Veterinary Pathobiology</OPTION>
+                                    <OPTION VALUE="VTPP">VTPP - Vet Physiology & Pharm</OPTION>
+                                    <OPTION VALUE="WFSC">WFSC-Wildlife & Fisheries Sci</OPTION>
+                                    <OPTION VALUE="WGST">WGST - Women's &Gender Studies</OPTION>
+                                    <OPTION VALUE="WMHS">WMHS-Water Mgmt & Hydrol Sci</OPTION>
+                                </select>
+                            </div>
+                            <div class="form-group form-actions">
+                                <button type="submit" class="btn btn-primary btn-success">Submit</button>
+                            </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-sm-3">
+                <div class="card" ng-controller="classesController">
+                    <div class="card-header">
+                        <strong>Filter</strong>
+                        <small>Form</small>
+                    </div>
+
+                    <div class="card-block">
+                        <div class="col-sm-4">
+                            available courses
+                        </div>
+                        <div class="col-sm-4">
+
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label class="switch switch-3d switch-primary">
+                                <input type="checkbox" class="switch-input" id="available" ng-change="change()" ng-model="confirmed">
+                                <span class="switch-label"></span>
+                                <span class="switch-handle"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-block">
+            <table ng-controller="classesController" class="table table-bordered table-striped table-condensed">
+                <thead>
+                <tr>
+                    <th >Select</th>
+                    <th>CRN</th>
+                    <th>Subj</th>
+                    <th>Crse</th>
+                    <th>Sec</th>
+                    <th>Cmp</th>
+                    <th>Cred</th>
+                    <th>Title</th>
+                    <th>Days</th>
+                    <th>Time</th>
+                    <th>Cap</th>
+                    <th>Act</th>
+                    <th>Rem</th>
+                    <th>Instructor</th>
+                    <th>Date</th>
+                    <th>Location</th>
+                    <th>Attribution</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="class in classes">
+                    <td><div ng-bind-html="class.Select"></div></td>
+                    <td>{{class.CRN}}</td>
+                    <td>{{class.Subj}}</td>
+                    <td>{{class.Crse}}</td>
+                    <td>{{class.Sec}}</td>
+                    <td>{{class.Cmp}}</td>
+                    <td>{{class.Cred}}</td>
+                    <td>{{class.Title}}</td>
+                    <td>{{class.Days}}</td>
+                    <td>{{class.Time}}</td>
+                    <td>{{class.Cap}}</td>
+                    <td>{{class.Act}}</td>
+                    <td>{{class.Rem}}</td>
+                    <td>{{class.Instructor}}</td>
+                    <td>{{class.Date}}</td>
+                    <td>{{class.Location}}</td>
+                    <td>{{class.Attribute}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+</div>
