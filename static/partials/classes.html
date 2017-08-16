@@ -1,4 +1,4 @@
-<div class="fullscreen">
+<div class="card">
         <div class="row">
             <div class="card-header col-12" ng-controller="mainController"> &nbsp;Welcome {{user['NetID']}}!</div>
         </div>
@@ -257,6 +257,23 @@
                         <div class="col-sm-4">
                             <label class="switch switch-3d switch-primary">
                                 <input type="checkbox" class="switch-input" id="available" ng-change="change()" ng-model="confirmed">
+                                <span class="switch-label"></span>
+                                <span class="switch-handle"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="card-block">
+                        <div class="col-sm-4">
+                            master courses
+                        </div>
+                        <div class="col-sm-4">
+
+                        </div>
+
+                        <div class="col-sm-4">
+                            <label class="switch switch-3d switch-primary">
+                                <input type="checkbox" class="switch-input" id="master" ng-change="masterFilter()" ng-model="masterConfirmed">
                                 <span class="switch-label"></span>
                                 <span class="switch-handle"></span>
                             </label>
