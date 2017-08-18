@@ -12,14 +12,16 @@ def login():
     error,client = tamu.cas_login(request.args.get('NetID'),request.args.get('password'))
     return jsonify(error)
 
-@app.route('/courses')
-def courses():
-    return "hello world"
-
-@app.route('/classes',methods=['POST','GET'])
+@app.route('/courses',methods=['POST','GET'])
 def getClasses():
     tamu = Tamu(request.args.get('major'))
     datas= tamu.get_term_list()
+    return jsonify(datas)
+
+@app.route('/getYourCourses',methods=['POST','GET'])
+def getYourCourses():
+    tamu= Tamu('CSCE')
+    datas = tamu.get_your_courses()
     return jsonify(datas)
 
 if __name__=='__main__':

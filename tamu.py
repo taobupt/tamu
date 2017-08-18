@@ -53,7 +53,7 @@ class Tamu():
         )
         data['csrfmiddlewaretoken']=x.cookies['csrftoken']
         x = client.post(URL,headers=self.headers,data=data,params=params)
-        #self.print_text_file(x.text)
+        self.print_text_file(x.text)
         soup = BeautifulSoup(x.text, 'html.parser')
         error = soup.find('p',{'class':'alert__title'})
         if error is not None:
@@ -61,6 +61,118 @@ class Tamu():
         else:
             self.write_account(NetID,password)
         return error,client
+
+    def parse_your_courses(slef,location):
+        soup = BeautifulSoup(location, 'html.parser')
+        table = soup.find('table', {'class': 'datadisplaytable'})
+        rows = table.find_all('tr')
+        data = []
+        for row in rows:
+            cols = row.find_all('td')
+            cols = [ele.text.strip() for ele in cols]
+            cols = cols[0:8] + cols[9:]
+            data.append(cols)
+        data = [x for x in data if x and len(x) > 3]
+        return data
+
+    def get_your_courses(self):
+        user = self.read_account()
+        error, client = self.cas_login(user['NetID'], user['password'])
+        self.headers={
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Accept-Language': 'zh-CN,zh;q=0.8',
+            'Upgrade-Insecure-Requests': '1',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+            'Referer': 'https://howdy.tamu.edu/uPortal/f/welcome/normal/render.uP',
+            'Connection': 'keep-alive',
+        }
+        xx=client.get('https://howdy.tamu.edu/uPortal/f/my-record/normal/render.uP', headers=self.headers)
+        self.print_text_file(xx.text)
+
+        self.headers={
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Accept-Language': 'zh-CN,zh;q=0.8',
+                'Upgrade-Insecure-Requests': '1',
+                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+                'Referer': 'https://howdy.tamu.edu/uPortal/f/my-record/normal/render.uP',
+                'Connection': 'keep-alive',
+            }
+
+        xx=client.get('https://howdy.tamu.edu/uPortal/p/TAMU-APP-Launcher.ctf3/detached/render.uP?pCm=view&pP_targetEndpoint=bwykfreg.P_AltPin', headers=self.headers)
+
+        self.headers={
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Accept-Language': 'zh-CN,zh;q=0.8',
+            'Upgrade-Insecure-Requests': '1',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+            'Referer': 'https://howdy.tamu.edu/uPortal/p/TAMU-APP-Launcher.ctf3/detached/render.uP?pCm=view&pP_targetEndpoint=bwykfreg.P_AltPin',
+            'Connection': 'keep-alive',
+        }
+        xx=client.get('https://compass-sso.tamu.edu/ssomanager/c/SSB?pkg=bwykfreg.P_AltPin', headers=self.headers)
+        self.print_text_file(xx.text)
+
+
+        self.headers={
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Accept-Language': 'zh-CN,zh;q=0.8',
+            'Upgrade-Insecure-Requests': '1',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+            'Referer': 'https://howdy.tamu.edu/uPortal/p/TAMU-APP-Launcher.ctf3/detached/render.uP?pCm=view&pP_targetEndpoint=bwykfreg.P_AltPin',
+            'Connection': 'keep-alive',
+        }
+        xx=client.get('https://cas.tamu.edu/cas/login?service=https%3A%2F%2Fcompass-sso.tamu.edu%3A443%2Fssomanager%2Fc%2FSSB%3Fpkg%3Dbwykfreg.P_AltPin', headers=self.headers, cookies=xx.cookies)
+        self.print_text_file(xx.text)
+
+        # self.headers= {
+        #     'Accept-Encoding': 'gzip, deflate, br',
+        #     'Accept-Language': 'zh-CN,zh;q=0.8',
+        #     'Upgrade-Insecure-Requests': '1',
+        #     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36',
+        #     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+        #     'Referer': 'https://howdy.tamu.edu/uPortal/p/TAMU-APP-Launcher.ctf3/detached/render.uP?pCm=view&pP_targetEndpoint=bwykfreg.P_AltPin',
+        #     'Connection': 'keep-alive',
+        # }
+        #
+        # xx=client.get('https://compass-sso.tamu.edu/ssomanager/c/SSB?pkg=bwykfreg.P_AltPin&ticket=ST-6De9AXLkOd7Sxb1GtV3HjErWNnfgiaFB-cas-node-1', headers=self.headers, cookies=xx.cookies)
+        # self.print_text_file(xx.text)
+
+        self.headers={
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Accept-Language': 'zh-CN,zh;q=0.8',
+            'Upgrade-Insecure-Requests': '1',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+            'Referer': 'https://howdy.tamu.edu/uPortal/p/TAMU-APP-Launcher.ctf3/detached/render.uP?pCm=view&pP_targetEndpoint=bwykfreg.P_AltPin',
+            'Connection': 'keep-alive',
+        }
+        xx=client.get('https://compass-ssb.tamu.edu/pls/PROD/bwykfreg.P_AltPin', headers=self.headers, cookies=xx.cookies)
+        self.print_text_file(xx.text)
+        self.headers={
+            'Origin': 'https://compass-ssb.tamu.edu',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Accept-Language': 'zh-CN,zh;q=0.8',
+            'Upgrade-Insecure-Requests': '1',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+            'Cache-Control': 'max-age=0',
+            'Referer': 'https://compass-ssb.tamu.edu/pls/PROD/bwykfreg.P_AltPin',
+            'Connection': 'keep-alive',
+        }
+
+        data = [
+            ('term_in', '201731'),
+        ]
+        xx=client.post('https://compass-ssb.tamu.edu/pls/PROD/bwykfreg.P_AltPin', headers=self.headers, cookies=xx.cookies, data=data)
+        self.print_text_file(xx.text)
+        datas=self.parse_your_courses(xx.text)
+        return datas
+
+
 
     def get_term_list(self):
         user = self.read_account()

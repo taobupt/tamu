@@ -1,0 +1,43 @@
+<div class="card">
+    <div class="row">
+        <div class="card-header col-12" ng-controller="mainController"> &nbsp;Welcome {{user['NetID']}}!</div>
+    </div>
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" ui-sref="classes">Courses</a>
+            <a class="navbar-brand" ui-sref="yourCourses">Your Courses</a>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="card-block">
+            <table ng-controller="yourCoursesController" class="table table-bordered table-striped table-condensed">
+                <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Status</th>
+                    <th>CRN</th>
+                    <th>Subj</th>
+                    <th>Crse</th>
+                    <th>Sec</th>
+                    <th>Level</th>
+                    <th>Cred</th>
+                    <th>Title</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="class in yourCourses">
+                    <td><div ng-bind-html="class.Action"></div></td>
+                    <td>{{class.Status}}</td>
+                    <td>{{class.CRN}}</td>
+                    <td>{{class.Subj}}</td>
+                    <td>{{class.Crse}}</td>
+                    <td>{{class.Sec}}</td>
+                    <td>{{class.Level}}</td>
+                    <td>{{class.Cred}}</td>
+                    <td>{{class.Title}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+</div>
