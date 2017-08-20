@@ -18,8 +18,9 @@ def getClasses():
     datas= tamu.get_term_list()
     return jsonify(datas)
 
-@app.route('/getYourCourses',methods=['POST','GET'])
+@app.route('/getYourCourses',methods=['GET'])
 def getYourCourses():
+    print("call getYourCourses")
     tamu= Tamu('CSCE')
     datas = tamu.get_your_courses()
     return jsonify(datas)

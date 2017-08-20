@@ -1,12 +1,17 @@
 <div class="card">
     <div class="row">
-        <div class="card-header col-12" ng-controller="mainController"> &nbsp;Welcome {{user['NetID']}}!</div>
+        <div class="card-header col-12" ng-controller="classesController">
+            <div class="col-sm-11">&nbsp;Welcome {{user['NetID']}}!</div>
+            <div class="col-sm-1">
+                <button type="button" class="btn btn-primary btn-success btn-xs" ng-click="logout()">Logout</button>
+            </div>
+        </div>
     </div>
 
     <nav class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
-            <a class="navbar-brand" ui-sref="classes">Courses</a>
-            <a class="navbar-brand" ui-sref="yourCourses">Your Courses</a>
+            <a class="navbar-brand" ui-sref="classes"><span class="navigation"><span style="font-size:1.5em;">Courses</span></span></a>
+            <a class="navbar-brand" ui-sref="yourselfCourses"><span class="navigation"><span style="font-size:1.5em;">Your Courses</span></span></a>
         </div>
     </nav>
     <div class="row">

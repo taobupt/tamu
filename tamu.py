@@ -7,6 +7,8 @@ class Tamu():
     def __init__(self,major):
         self.headers=None
         self.major=major
+        self.add_courses_cookies=[]
+        self.drop_courses_cookies=[]
 
     def print_text_file(self,text):
         with open('/Users/tao/Desktop/untitled.html','wt')as f:
@@ -126,20 +128,6 @@ class Tamu():
         }
         xx=client.get('https://cas.tamu.edu/cas/login?service=https%3A%2F%2Fcompass-sso.tamu.edu%3A443%2Fssomanager%2Fc%2FSSB%3Fpkg%3Dbwykfreg.P_AltPin', headers=self.headers, cookies=xx.cookies)
         self.print_text_file(xx.text)
-
-        # self.headers= {
-        #     'Accept-Encoding': 'gzip, deflate, br',
-        #     'Accept-Language': 'zh-CN,zh;q=0.8',
-        #     'Upgrade-Insecure-Requests': '1',
-        #     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36',
-        #     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-        #     'Referer': 'https://howdy.tamu.edu/uPortal/p/TAMU-APP-Launcher.ctf3/detached/render.uP?pCm=view&pP_targetEndpoint=bwykfreg.P_AltPin',
-        #     'Connection': 'keep-alive',
-        # }
-        #
-        # xx=client.get('https://compass-sso.tamu.edu/ssomanager/c/SSB?pkg=bwykfreg.P_AltPin&ticket=ST-6De9AXLkOd7Sxb1GtV3HjErWNnfgiaFB-cas-node-1', headers=self.headers, cookies=xx.cookies)
-        # self.print_text_file(xx.text)
-
         self.headers={
             'Accept-Encoding': 'gzip, deflate, br',
             'Accept-Language': 'zh-CN,zh;q=0.8',
@@ -170,6 +158,7 @@ class Tamu():
         xx=client.post('https://compass-ssb.tamu.edu/pls/PROD/bwykfreg.P_AltPin', headers=self.headers, cookies=xx.cookies, data=data)
         self.print_text_file(xx.text)
         datas=self.parse_your_courses(xx.text)
+        self.drop_courses_cookies=xx.cookies
         return datas
 
 
@@ -340,8 +329,11 @@ class Tamu():
             xx=client.post('https://compass-ssb.tamu.edu/pls/PROD/bwykfcls.P_GetCrse?deviceType=C', headers=self.headers, cookies=cookies, data=data)
             datas+=self.parse_html(xx.text)
         print("done!")
+        self.add_courses_cookies=xx.cookies
         return datas
-
+    def add_course(self):
+        user = self.read_account()
+        error, client = self.cas_login(user['NetID'], user['password'])
     def parse_course(self,location):
         soup = BeautifulSoup(location,'html.parser')
         value = soup.find_all('input',{'name':'SEL_CRSE'})

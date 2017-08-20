@@ -1,5 +1,5 @@
 'use strict';
-var animateApp = angular.module('animateApp', ['ui.router', 'ngAnimate','ng-backstretch','ngMaterial','ngSanitize','ngProgress','ui.navbar','ngStorage']);
+var animateApp = angular.module('animateApp', ['ui.router', 'ngAnimate','ng-backstretch','ngMaterial','ngSanitize','ngProgress','ui.navbar','ngStorage','ngCookies']);
 animateApp.config(function ($stateProvider,$urlRouterProvider,$sceProvider) {
 
     $urlRouterProvider.otherwise('/home');
@@ -14,18 +14,18 @@ animateApp.config(function ($stateProvider,$urlRouterProvider,$sceProvider) {
             templateUrl:'static/partials/contact.html',
             controller:'contactController'
         })
-        .state('yourCourses',{
-            url: '/yourCourses',
+        .state('yourselfCourses',{
+            url: '/yourselfCourses',
             templateUrl:'static/partials/yourCourses.html',
             controller:'yourCoursesController',
             resolve: {
-               accessToken: ['$localStorage','$location','$mdDialog', function($localStorage,$location,$mdDialog){
-                   if($localStorage.accessToken){
-                        return $localStorage.accessToken;
+               accessToken: ['$localStorage','$state','$cookies', function($localStorage,$state,$cookies){
+                   if($cookies.get('accessToken')){
+                        return $cookies.get('accessToken')
                    }
                    else {
-                        $location.path('/home');
-                        return;
+                        $state.go('home');
+                        return undefined;
                    }
                 }]
             }
@@ -35,13 +35,13 @@ animateApp.config(function ($stateProvider,$urlRouterProvider,$sceProvider) {
             templateUrl:'static/partials/classes.html',
             controller:'classesController',
             resolve: {
-               accessToken: ['$localStorage','$location','$mdDialog', function($localStorage,$location,$mdDialog){
-                   if($localStorage.accessToken){
-                        return $localStorage.accessToken;
+               accessToken: ['$localStorage','$state','$cookies', function($localStorage,$state,$cookies){
+                   if($cookies.get('accessToken')){
+                        return $cookies.get('accessToken')
                    }
                    else {
-                        $location.path('/home');
-                        return;
+                        $state.go('home');
+                        return undefined;
                    }
                 }]
             }
@@ -51,7 +51,7 @@ animateApp.config(function ($stateProvider,$urlRouterProvider,$sceProvider) {
 
 // CONTROLLERS ============================================
 // home page controller
-animateApp.controller('mainController', function($rootScope,$scope,$http,$state,$mdDialog,ngProgressFactory,$localStorage) {
+animateApp.controller('mainController', function($rootScope,$scope,$http,$state,$mdDialog,ngProgressFactory,$cookies) {
     $scope.images = [
     '/static/img/login/1.jpg',
     '/static/img/login/2.jpg'
@@ -73,7 +73,7 @@ animateApp.controller('mainController', function($rootScope,$scope,$http,$state,
                 $scope.progressbar.complete();
                 var error = response.data;
                 if (error===null){
-                    $localStorage.accessToken = 'taobupt';
+                    $cookies.put('accessToken','taobupt');
                     $state.go('classes');
                 }else{
                     $state.go('home');
@@ -96,19 +96,27 @@ animateApp.controller('mainController', function($rootScope,$scope,$http,$state,
 });
 
 // about page controller
-animateApp.controller('yourCoursesController', function($scope,$rootScope,$sce,$http,ngProgressFactory,$localStorage) {
+animateApp.controller('yourCoursesController', function($scope,$rootScope,$sce,$http,ngProgressFactory,$state,$cookies) {
     var text = "<input type='button' value='Drop' class='btn btn-warning btn-xs'>";
     text = $sce.trustAsHtml(text);
-    if($localStorage.accessToken && ($rootScope.yourCourses===undefined||$rootScope.yourCourses.length==0)){
+    console.log("yourCoursesController");
+    $scope.logout=function () {
+        $cookies.remove('accessToken');
+        $state.go('home');
+    };
+    console.log($rootScope.yourCourses);
+    if($cookies.get('accessToken') && $rootScope.yourCourses===undefined){
         $scope.progressbar = ngProgressFactory.createInstance();
-        $scope.progressbar.setColor("brickred");
+        $scope.progressbar.setColor("#ffff00");
         $scope.progressbar.start();
+        $rootScope.yourCourses=[];
         $http({
             url:"http://127.0.0.1:5000/getYourCourses",
             method:'GET'
         }).then(function (response) {
-            $scope.progressbar.complete();
+            console.log("innner part");
             $rootScope.yourCourses=[];
+            $scope.progressbar.complete();
             var data = response.data;
             var d = {'Status':'**Web Registered** on Apr 07, 2017','Action':text,'CRN':'31266','Subj':'CSCE','Crse':'634','Sec':'600','Level':'Graduate','Cred':'3','Title':'INTELL USER INTERFACE'};
             var len = data.length;
@@ -133,9 +141,14 @@ animateApp.controller('contactController', function($scope) {
     $scope.pageClass = 'page-contact';
 });
 
-animateApp.controller('classesController', function($scope,$rootScope,$sce,$http,ngProgressFactory) {
+animateApp.controller('classesController', function($scope,$rootScope,$sce,$http,ngProgressFactory,$state,$cookies) {
+    console.log("classesController");
     var text = "<input type='button' value='Select' class='btn btn-warning btn-xs'>";
     text = $sce.trustAsHtml(text);
+    $scope.logout=function () {
+        $cookies.remove('accessToken');
+        $state.go('home');
+    };
     if($rootScope.availableCr===undefined){
         $scope.confirmed=false;
     }else{
